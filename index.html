@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de Bolsas PhD/Mestrado</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-indigo-50 text-gray-800">
+
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl border p-8">
+      <h1 class="text-2xl font-bold mb-2 text-center text-indigo-700">
+        Teste seu perfil para bolsas de mestrado e PhD nos EUA
+      </h1>
+      <p class="text-md text-gray-600 mb-6 text-center">
+        Mentoria Ciência na Gringa by Barbara Azevedo
+      </p>
+
+      <form id="quizForm" class="space-y-4">
+
+        <!-- Perguntas -->
+        <div>
+          <label class="block font-medium">1. Tenho bacharel ou licenciatura de no mínimo 3 anos?</label>
+          <select name="q1" required class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="1">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">2. Minha média na faculdade é acima de 7?</label>
+          <select name="q2" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="2">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">3. Tenho experiências extracurriculares (projetos, ligas, monitoria)?</label>
+          <select name="q3" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="1">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">4. Tenho experiência com pesquisa (ex: PIBIC)?</label>
+          <select name="q4" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="3">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">5. Tenho artigos publicados?</label>
+          <select name="q5" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="2">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">6. Tenho experiência com docência?</label>
+          <select name="q6" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="2">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">7. Já tenho mestrado?</label>
+          <select name="q7" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="3">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium">8. Já apresentei pôster ou banner em congresso?</label>
+          <select name="q8" class="w-full border rounded p-2 mt-1">
+            <option value="">Selecione</option>
+            <option value="1">Sim</option>
+            <option value="0">Não</option>
+          </select>
+        </div>
+
+        <!-- Botão -->
+        <button type="submit" class="mt-4 w-full bg-indigo-600 text-white px-6 py-2 rounded-xl hover:bg-indigo-700 transition">
+          Calcular Pontuação
+        </button>
+
+      </form>
+
+      <!-- Resultado -->
+      <div id="resultado" class="mt-6 text-lg font-semibold text-center text-indigo-800"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let total = 0;
+      const form = e.target;
+
+      for (let i = 1; i <= 8; i++) {
+        total += parseInt(form["q" + i].value || 0);
+      }
+
+      let resultado = "";
+      if (total >= 12) {
+        resultado = "🚀 Suas chances são ALTÍSSIMAS! Vá com tudo!";
+      } else if (total >= 8) {
+        resultado = "✨ Boas chances! Com um bom plano de pesquisa, você se destaca.";
+      } else if (total >= 5) {
+        resultado = "🔍 Você está no caminho, mas pode melhorar sua competitividade.";
+      } else {
+        resultado = "⚠️ Seria interessante fortalecer seu currículo antes de aplicar.";
+      }
+
+      document.getElementById("resultado").textContent = `Sua pontuação: ${total}/15 – ${resultado}`;
+    });
+  </script>
+
+</body>
+</html>
